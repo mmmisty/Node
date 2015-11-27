@@ -10,5 +10,6 @@
     <orderEntry type="library" name="commons-pool2-2.0" level="project" />
     <orderEntry type="library" name="bson-3.0.4" level="project" />
     <orderEntry type="library" name="commons-cli-1.2" level="project" />
+    <orderEntry type="library" name="riak-client-2.0.2" level="project" />
   </component>
 </module>

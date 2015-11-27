@@ -6,11 +6,13 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] arg) {
-        RedisClient.Test();
-        MongoDBClient.Test();
+
         try {
-            HBaseClient.Test();
-        } catch (IOException e) {
+            RiakTesting.Test();
+//            RedisClient.Test();
+//            MongoDBClient.Test();
+//            HBaseClient.Test();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

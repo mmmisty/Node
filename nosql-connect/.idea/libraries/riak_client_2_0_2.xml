@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="riak-client-2.0.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/riak-client-2.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.7.0-rc1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.7.0-rc1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
