@@ -22,6 +22,7 @@ public class MongoDBClient {
         mongoLogger.setLevel(Level.SEVERE);
 
         // connect
+        // test db is created when installing MongoDB
         MongoClient mongo = new MongoClient(Settings.HOST);
         MongoDatabase db = mongo.getDatabase("test");
 
