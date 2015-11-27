@@ -22,7 +22,7 @@ public class MongoDBClient {
         mongoLogger.setLevel(Level.SEVERE);
 
         // connect
-        MongoClient mongo = new MongoClient("52.10.102.202");
+        MongoClient mongo = new MongoClient(Settings.HOST);
         MongoDatabase db = mongo.getDatabase("test");
 
         // get collection

@@ -8,7 +8,7 @@ public class RedisClient {
 
     public static void Test() {
         boolean ok = true;
-        Jedis redis = new Jedis("52.10.102.202");
+        Jedis redis = new Jedis(Settings.HOST);
 
         String key = "key";
         String val = "value123123";

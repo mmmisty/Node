@@ -22,7 +22,7 @@ public class HBaseClient {
     public static final String row_name = "myRow";
 
     public static void Test() throws IOException {
-        connect("52.10.102.202");
+        connect(Settings.HOST);
 
         createTable(table_name);
 
@@ -70,12 +70,14 @@ public class HBaseClient {
 
         table.addFamily(new HColumnDescriptor(col_family_name));
 
-        System.out.println("creating table ...");
+
+        System.out.println("checking table ...");
         if (admin.tableExists(table.getTableName())) {
             admin.disableTable(table.getTableName());
             admin.deleteTable(table.getTableName());
         }
 
+        System.out.println("creating table ...");
         admin.createTable(table);
     }
 }
