@@ -19,6 +19,7 @@ public class TestCase {
         Date begin = new Date();
         long t = begin.getTime() % round;
         try {
+            System.out.println("Count down. " + (round - t) + " ms.");
             Thread.sleep(round - t);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
