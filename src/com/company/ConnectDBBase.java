@@ -58,6 +58,9 @@ public class ConnectDBBase {
         return true;
     }
 
+    public void Close() {
+    }
+
     protected int GetHashCode(String str) {
         int hashcode = str.hashCode();
         return (hashcode & 0xfffffff) % _servers.size();
@@ -138,5 +141,7 @@ public class ConnectDBBase {
         ProcessOne("put", loop);
         ProcessOne("get", loop);
         ProcessOne("del", loop);
+
+        Close();
     }
 }

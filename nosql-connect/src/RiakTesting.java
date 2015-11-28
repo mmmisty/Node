@@ -39,6 +39,8 @@ public class RiakTesting {
 
         RiakObject respObj = resp.getValue(RiakObject.class);
 
+
+
         // check
         if (!obj.getValue().equals(respObj.getValue())) {
             System.out.println("Riak test failed: get value not match. " + respObj.getValue());
