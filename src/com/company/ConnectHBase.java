@@ -97,9 +97,11 @@ public class ConnectHBase extends ConnectDBBase {
 
     public boolean Get(String key, String value) {
         if (_servers == null || _servers.isEmpty()) {
+            System.out.println("Config Error.");
             return false;
         }
         if (_hbase == null || _hbase.isEmpty()) {
+            System.out.println("Socket Error.");
             return false;
         }
 
