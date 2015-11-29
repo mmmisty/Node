@@ -114,7 +114,13 @@ public class ConnectHBase extends ConnectDBBase {
             byte[] bValue = r.getValue(Bytes.toBytes(col_family_name),
                     Bytes.toBytes(key));
             //System.out.println(key + " " + value + "  " + Bytes.toString(bValue));
-            return value.equals( Bytes.toString(bValue) );
+            boolean re = value.equals( Bytes.toString(bValue) );
+            if (!re) {
+                System.out.println("bytes:   " + bValue);
+                System.out.println("b value: " + Bytes.toString(bValue));
+                System.out.println("o value: " + value);
+            }
+            return re;
         } catch (Exception e) {
             System.out.println("In Exception: " + e.getMessage());
             return false;
