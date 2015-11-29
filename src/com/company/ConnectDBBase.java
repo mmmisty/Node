@@ -119,8 +119,8 @@ public class ConnectDBBase {
         System.out.println(command + "ing " + loop + " key/value pairs needs " + (end.getTime() - start.getTime()) + " ms.");
     }
 
-    public void Run(String[] args) {
-        int loop = Integer.parseInt(args[0]);
+    public void Run(String arg) {
+        int loop = Integer.parseInt(arg);
 
         GetConfig("DBs.properties");
         ConnectAllServers();

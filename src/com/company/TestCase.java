@@ -10,8 +10,8 @@ public class TestCase {
     private List<String> _keys = null;
     private List<String> _values = null;
 
-    public void Run(String[] args) {
-        int loop = Integer.parseInt(args[0]);
+    public void Run(String arg) {
+        int loop = Integer.parseInt(arg);
 
         Init();
 
