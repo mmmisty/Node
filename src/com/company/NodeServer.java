@@ -15,7 +15,7 @@ public class NodeServer implements Runnable {
 
     private int _workersCount = 32;
     private ServerSocket _listener = null;
-    private TaskQueue<Socket> _taskQueue = new TaskQueue<Socket>(8);
+    private TaskQueue<Socket> _taskQueue = new TaskQueue<Socket>(32);
     private List<Thread> _workers = new ArrayList<Thread>();
     private int _port = 0;
 
