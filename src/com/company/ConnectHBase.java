@@ -47,12 +47,12 @@ public class ConnectHBase extends ConnectDBBase {
 
                     table.addFamily(new HColumnDescriptor(col_family_name));
 
-                    if (admin.tableExists(table.getTableName())) {
-                        admin.disableTable(table.getTableName());
-                        admin.deleteTable(table.getTableName());
+                    if (!admin.tableExists(table.getTableName())) {
+//                        admin.disableTable(table.getTableName());
+//                        admin.deleteTable(table.getTableName());
+                        admin.createTable(table);
                     }
 
-                    admin.createTable(table);
 
                     Table t1 = conn.getTable(TableName.valueOf(table_name));
 
@@ -88,6 +88,7 @@ public class ConnectHBase extends ConnectDBBase {
         try {
             table.put(p);
         } catch (IOException e) {
+            System.out.println("In Exception: " + e.getMessage());
             return false;
         }
 
@@ -113,6 +114,7 @@ public class ConnectHBase extends ConnectDBBase {
             //System.out.println(key + " " + value + "  " + Bytes.toString(bValue));
             return value.equals( Bytes.toString(bValue) );
         } catch (Exception e) {
+            System.out.println("In Exception: " + e.getMessage());
             return false;
         }
     }
@@ -132,6 +134,7 @@ public class ConnectHBase extends ConnectDBBase {
         try {
             table.delete(d);
         } catch (IOException e) {
+            System.out.println("In Exception: " + e.getMessage());
             return false;
         }
         return true;
