@@ -27,7 +27,8 @@ public class ConnectHBase extends ConnectDBBase {
 
     public static final String table_name = "myTable";
     public static final String col_family_name = "myColumnFamily";
-    public static final String row_name = "myRow";
+//    public static final String row_name = "myRow";
+    public static final String col_name = "myCol";
 
     public boolean ConnectAllServers() {
         if (_hbase == null || _hbase.isEmpty()) {
@@ -83,8 +84,8 @@ public class ConnectHBase extends ConnectDBBase {
         int serverNumber = GetHashCode(key);
         Table table = _hbase.get(serverNumber);
 
-        Put p = new Put(Bytes.toBytes(row_name));
-        p.addColumn(Bytes.toBytes(col_family_name), Bytes.toBytes(key), Bytes.toBytes(value));
+        Put p = new Put(Bytes.toBytes(key));
+        p.addColumn(Bytes.toBytes(col_family_name), Bytes.toBytes(col_name), Bytes.toBytes(value));
         try {
             table.put(p);
         } catch (IOException e) {
@@ -108,11 +109,11 @@ public class ConnectHBase extends ConnectDBBase {
         int serverNumber = GetHashCode(key);
         Table table = _hbase.get(serverNumber);
 
-        Get g = new Get(Bytes.toBytes(row_name));
+        Get g = new Get(Bytes.toBytes(key));
         try {
             Result r = table.get(g);
             byte[] bValue = r.getValue(Bytes.toBytes(col_family_name),
-                    Bytes.toBytes(key));
+                    Bytes.toBytes(col_name));
             //System.out.println(key + " " + value + "  " + Bytes.toString(bValue));
             boolean re = value.equals( Bytes.toString(bValue) );
             if (!re) {
@@ -138,7 +139,7 @@ public class ConnectHBase extends ConnectDBBase {
         int serverNumber = GetHashCode(key);
         Table table = _hbase.get(serverNumber);
 
-        Delete d = new Delete(Bytes.toBytes(row_name));
+        Delete d = new Delete(Bytes.toBytes(key));
         try {
             table.delete(d);
         } catch (IOException e) {
