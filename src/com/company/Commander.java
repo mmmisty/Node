@@ -150,7 +150,7 @@ public class Commander {
             } catch (Exception e) {
 //                e.printStackTrace();
                 _serverSockets.clear();
-                System.out.println(e.getMessage());
+                System.out.println("Connect failed:" + e.getMessage());
                 return false;
             }
         }
@@ -248,8 +248,9 @@ public class Commander {
             String line = input.readLine();
 
             return line.equals("Done.");
-        } catch (IOException IOEx) {
-            IOEx.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Put Error: " + e.getMessage());
+            e.printStackTrace();
         }
         return false;
     }

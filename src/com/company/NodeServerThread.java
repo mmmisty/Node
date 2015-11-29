@@ -40,15 +40,18 @@ public class NodeServerThread implements Runnable {
             if (_socket == null) {
                 break;
             }
+
+            System.out.println("start process socket " + _threadId);
+
             ProcessCommand();
+
+            System.out.println("end process socket " + _threadId);
 
             try {
                 _socket.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-//            System.out.println(_socket.getRemoteSocketAddress().toString());
         }
     }
 
@@ -61,15 +64,9 @@ public class NodeServerThread implements Runnable {
                 String OneCommand = input.readLine();
                 //System.out.println("NodeServer: " + OneCommand);
                 if ( null == OneCommand || OneCommand.isEmpty() ) {
-                    System.out.println("Total put time: " + _totalPutTime);
-                    System.out.println("Total get time: " + _totalGetTime);
-                    System.out.println("Total del time: " + _totalDelTime);
+                    System.out.println("Total time: put" + _totalPutTime + ", get " + _totalGetTime + ", del " + _totalDelTime);
                     break;
                 }
-//                int blank = OneCommand.indexOf(' ');
-//                String c1 = OneCommand.substring(0, blank);
-//                String c2 = OneCommand.substring(blank + 1);
-//                String[] args = OneCommand.split(" ");
                 String header = OneCommand.substring(0, 4);
                 String key = OneCommand.substring(4, 4 + 20);
                 String value = OneCommand.substring(4 + 20, 4 + 20 + 1000);
@@ -82,6 +79,7 @@ public class NodeServerThread implements Runnable {
                 } else if (header.equals("del ")) {
                     result = Del(key);
                 } else {
+                    System.out.println("Unknow Command: " + OneCommand);
                     result = HandleUnknown();
                 }
 
@@ -89,7 +87,6 @@ public class NodeServerThread implements Runnable {
                 output.write(result);
                 output.newLine();
                 output.flush();
-
             }
         } catch (Exception ex) {
             System.out.println("ProcessCommand error: " + ex.getMessage());
