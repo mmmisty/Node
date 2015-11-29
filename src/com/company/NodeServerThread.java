@@ -59,7 +59,7 @@ public class NodeServerThread implements Runnable {
             while (true) {
 
                 String OneCommand = input.readLine();
-                System.out.println("NodeServer: " + OneCommand);
+                //System.out.println("NodeServer: " + OneCommand);
                 if ( null == OneCommand || OneCommand.isEmpty() ) {
                     System.out.println("Total put time: " + _totalPutTime);
                     System.out.println("Total get time: " + _totalGetTime);
@@ -92,43 +92,43 @@ public class NodeServerThread implements Runnable {
 
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("ProcessCommand error: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
     protected String Put(String key, String value) {
         Date start = new Date();
-        System.out.println("PUT, Key: " + key);
-        System.out.println("Value: " + value);
+//        System.out.println("PUT, Key: " + key);
+//        System.out.println("Value: " + value);
         synchronized (_primaryData) {
             _primaryData.put(key, value);
+            Date end = new Date();
+            _totalPutTime += end.getTime() - start.getTime();
         }
-        Date end = new Date();
-        _totalPutTime += end.getTime() - start.getTime();
         return "Done.";
     }
 
     protected String Get(String key) {
         Date start = new Date();
-        System.out.println("GET, Key: " + key);
+        //System.out.println("GET, Key: " + key);
         String value;
         synchronized (_primaryData) {
             value = _primaryData.getOrDefault(key, "");
+            Date end = new Date();
+            _totalPutTime += end.getTime() - start.getTime();
         }
-        Date end = new Date();
-        _totalPutTime += end.getTime() - start.getTime();
         return value;
     }
 
     protected String Del(String key) {
         Date start = new Date();
-        System.out.println("Key: " + key);
+        //System.out.println("Key: " + key);
         synchronized (_primaryData) {
             _primaryData.remove(key);
+            Date end = new Date();
+            _totalPutTime += end.getTime() - start.getTime();
         }
-        Date end = new Date();
-        _totalPutTime += end.getTime() - start.getTime();
         return "Done.";
     }
 
